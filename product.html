@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Композиція — MI ballloons</title>
+  <meta name="description" content="Композиція з гелієвих кульок з доставкою по Києву та передмістю щодня з 7:00 до 23:30.">
+  <meta name="theme-color" content="#fff6f8">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Cormorant+Garamond:ital,wght@1,600&family=Great+Vibes&family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="product">
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+  <header class="site-header" id="site-header"></header>
+
+  <main id="main">
+    <div class="wrap pp-wrap" id="pp"></div>
+
+    <section class="section" aria-labelledby="rel-title" id="related-section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="rel-title">Вам також сподобається</h2>
+          <a class="btn btn-ghost" href="catalog.html">Увесь каталог</a>
+        </div>
+        <div class="pgrid" id="related"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <dialog class="modal" id="request" aria-labelledby="req-title">
+    <form class="modal-body" id="req-form" novalidate>
+      <div class="modal-head">
+        <h2 id="req-title">Заявка на фотозону</h2>
+        <button class="icon-btn" type="button" data-modal-close aria-label="Закрити">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <div class="req-fields">
+        <p class="req-lead">Залиште контакти — менеджер звʼяжеться, щоб обговорити кольори, розмір і дату.</p>
+        <div class="field">
+          <label for="req-name">Імʼя</label>
+          <input class="input" id="req-name" name="name" autocomplete="given-name" required>
+          <p class="field-error">Вкажіть, як до вас звертатися</p>
+        </div>
+        <div class="field">
+          <label for="req-phone">Телефон</label>
+          <input class="input" id="req-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 __ ___ __ __" pattern="[+0-9 \(\)\-]{10,19}" required>
+          <p class="field-error">Вкажіть номер у форматі +380 XX XXX XX XX</p>
+        </div>
+        <div class="field">
+          <label for="req-date">Дата свята</label>
+          <input class="input" id="req-date" name="date" type="date">
+        </div>
+        <div class="field">
+          <label for="req-msg">Що плануєте</label>
+          <textarea class="textarea" id="req-msg" name="message" rows="3" placeholder="Привід, кольори, де буде свято"></textarea>
+        </div>
+        <button class="btn btn-ink btn-block" type="submit">Надіслати заявку</button>
+      </div>
+      <div class="req-done" hidden>
+        <p class="empty-title">Заявку прийнято</p>
+        <p>Менеджер звʼяжеться з вами, щоб обговорити деталі. Якщо зручніше — напишіть нам у Direct.</p>
+        <a class="btn btn-ink" id="req-direct" href="#" target="_blank" rel="noopener">Написати в Direct</a>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/art.js" defer></script>
+  <script src="assets/js/core.js" defer></script>
+  <script src="assets/js/product.js" defer></script>
+</body>
+</html>

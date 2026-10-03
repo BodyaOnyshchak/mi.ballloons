@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MI ballloons — кульки, фотозони та декор у Києві</title>
+  <meta name="description" content="Гелієві кульки з доставкою по Києву та передмістю щодня з 7:00 до 23:30. Готові букети, бабли з написом, цифри, коробки-сюрпризи та фотозони. Зберіть свою композицію в онлайн-конструкторі.">
+  <meta name="theme-color" content="#fff6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MI ballloons — кульки, фотозони та декор у Києві">
+  <meta property="og:description" content="Букети з гелієвих кульок, бабли з написом і фотозони. Конструктор композицій онлайн.">
+  <meta property="og:locale" content="uk_UA">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Cormorant+Garamond:ital,wght@1,600&family=Great+Vibes&family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+  <header class="site-header" id="site-header"></header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">Кульки, що скажуть усе за вас</h1>
+          <p class="hero-lead">Букети з гелієвих кульок, бабли з написом і фотозони. Доставляємо по Києву та передмістю щодня з 7:00 до 23:30.</p>
+        </div>
+
+        <div class="hero-stage">
+          <div class="hero-circle" aria-hidden="true"></div>
+          <div class="hero-art" id="hero-art"></div>
+        </div>
+
+        <form class="hero-try" id="hero-try" action="constructor.html">
+          <div class="field">
+            <label for="hero-text">Напишіть, що буде на баблі</label>
+            <input class="input input-hand" id="hero-text" name="text" maxlength="40" value="З днем народження!" autocomplete="off" spellcheck="false">
+          </div>
+          <fieldset class="hero-palettes">
+            <legend class="label">Палітра букета</legend>
+            <div class="chips" id="hero-palettes"></div>
+          </fieldset>
+          <div class="hero-cta">
+            <button class="btn btn-ink" type="submit">Продовжити в конструкторі</button>
+            <a class="btn btn-ghost" href="catalog.html">Готові композиції</a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section section-first" id="bestsellers" aria-labelledby="best-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="best-title">Готові композиції</h2>
+            <p class="section-sub">Збираємо в день замовлення. Напис, цифри й колір змінюєте прямо на сторінці товару.</p>
+          </div>
+          <a class="btn btn-ghost" href="catalog.html">Увесь каталог</a>
+        </div>
+        <div class="pgrid" id="best-grid"></div>
+      </div>
+    </section>
+
+    <section class="section section-tight" aria-labelledby="occ-title">
+      <div class="wrap occ">
+        <h2 id="occ-title" class="occ-title">Для якого свята?</h2>
+        <ul class="occ-list" id="occ-list"></ul>
+      </div>
+    </section>
+
+    <section class="section" id="builder" aria-labelledby="builder-title">
+      <div class="wrap">
+        <div class="builder">
+          <div class="builder-copy">
+            <h2 id="builder-title">Зберіть композицію самостійно</h2>
+            <p class="section-sub">Конструктор показує букет одразу таким, яким ми його привеземо, і рахує ціну, поки ви обираєте.</p>
+            <ol class="steps">
+              <li>
+                <span class="step-n" aria-hidden="true">1</span>
+                <div>
+                  <h3>Оберіть кульки</h3>
+                  <p>Латексні, хром, з конфеті, бабли, серця, зірки, цифри та літери — понад 40 кольорів.</p>
+                </div>
+              </li>
+              <li>
+                <span class="step-n" aria-hidden="true">2</span>
+                <div>
+                  <h3>Додайте напис</h3>
+                  <p>На будь-яку кульку: імʼя, дату чи кілька теплих слів. Чотири стилі шрифту на вибір.</p>
+                </div>
+              </li>
+              <li>
+                <span class="step-n" aria-hidden="true">3</span>
+                <div>
+                  <h3>Оформіть доставку</h3>
+                  <p>Привеземо в зручний час з 7:00 до 23:30 або заберіть самі на Позняках.</p>
+                </div>
+              </li>
+            </ol>
+            <a class="btn btn-ink" href="constructor.html">Відкрити конструктор</a>
+          </div>
+          <a class="builder-visual" href="constructor.html" aria-label="Відкрити конструктор">
+            <div class="bv-stage" id="bv-art"></div>
+            <div class="bv-swatches" aria-hidden="true" id="bv-swatches"></div>
+            <p class="bv-note hand" aria-hidden="true">понад 40 кольорів</p>
+            <div class="bv-price" aria-hidden="true"><span>Разом</span><strong id="bv-price">—</strong></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="night" id="photozones" aria-labelledby="pz-title">
+      <div class="wrap night-grid">
+        <div class="night-art" id="pz-art"></div>
+        <div class="night-copy">
+          <h2 id="pz-title">Фотозони та декор свят</h2>
+          <p>Оформлюємо дні народження, виписки, gender party, весілля та відкриття. Підберемо кольори, підготуємо ескіз, привеземо й змонтуємо.</p>
+          <ul class="pz-list" id="pz-list"></ul>
+          <div class="night-cta">
+            <a class="btn btn-light" id="pz-direct" href="#" target="_blank" rel="noopener">Обговорити фотозону</a>
+            <a class="btn btn-ghost-light" href="catalog.html?cat=photozones">Дивитися варіанти</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="delivery" aria-labelledby="delivery-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="delivery-title">Доставка й оплата</h2>
+        </div>
+        <ul class="facts" id="facts"></ul>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq-wrap">
+        <h2 id="faq-title">Питання та відповіді</h2>
+        <div class="faq" id="faq-list"></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="insta-title">
+      <div class="wrap insta">
+        <div class="insta-copy">
+          <h2 id="insta-title">Більше робіт — в Instagram</h2>
+          <p class="section-sub">Щодня показуємо свіжі букети, фотозони й ваші свята. Нас читають понад 6 000 людей.</p>
+          <a class="btn btn-ink" id="insta-link" href="#" target="_blank" rel="noopener"></a>
+        </div>
+        <ul class="insta-row" id="insta-row"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/art.js" defer></script>
+  <script src="assets/js/core.js" defer></script>
+  <script src="assets/js/home.js" defer></script>
+</body>
+</html>

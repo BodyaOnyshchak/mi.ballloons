@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Каталог композицій з кульок — MI ballloons</title>
+  <meta name="description" content="Готові букети з гелієвих кульок, бабли з написом, фольговані цифри, коробки-сюрпризи та фотозони з доставкою по Києву.">
+  <meta name="theme-color" content="#fff6f8">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Cormorant+Garamond:ital,wght@1,600&family=Great+Vibes&family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="catalog">
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+  <header class="site-header" id="site-header"></header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Навігаційний ланцюжок">
+          <ol>
+            <li><a href="index.html">Головна</a></li>
+            <li aria-current="page" id="crumb-current">Каталог</li>
+          </ol>
+        </nav>
+        <h1 id="cat-title">Каталог</h1>
+        <p class="page-sub" id="cat-sub">Готові композиції з гелієвих кульок. Збираємо в день замовлення, напис і цифри змінюєте на сторінці товару.</p>
+      </div>
+    </section>
+
+    <section class="catalog" aria-label="Товари">
+      <div class="wrap">
+        <search class="filters">
+          <form id="filters">
+            <fieldset>
+              <legend class="visually-hidden">Категорія</legend>
+              <div class="chips chips-scroll" id="f-cats"></div>
+            </fieldset>
+            <div class="f-row">
+              <div class="f-selects">
+                <label class="visually-hidden" for="f-occasion">Свято</label>
+                <select class="select select-sm" id="f-occasion" name="occasion"></select>
+                <label class="visually-hidden" for="f-sort">Сортування</label>
+                <select class="select select-sm" id="f-sort" name="sort">
+                  <option value="popular">Спершу популярні</option>
+                  <option value="price-asc">Спершу дешевші</option>
+                  <option value="price-desc">Спершу дорожчі</option>
+                </select>
+              </div>
+              <p class="f-count" id="f-count" aria-live="polite"></p>
+            </div>
+          </form>
+        </search>
+        <div class="pgrid" id="cat-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/art.js" defer></script>
+  <script src="assets/js/core.js" defer></script>
+  <script src="assets/js/catalog.js" defer></script>
+</body>
+</html>

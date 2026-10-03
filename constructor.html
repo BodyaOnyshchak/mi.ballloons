@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Конструктор композицій з кульок — MI ballloons</title>
+  <meta name="description" content="Зберіть свою композицію з гелієвих кульок: оберіть кольори, бабли, серця, цифри та написи. Ціна рахується одразу, доставка по Києву 7:00–23:30.">
+  <meta name="theme-color" content="#fff6f8">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Cormorant+Garamond:ital,wght@1,600&family=Great+Vibes&family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/constructor.css">
+</head>
+<body data-page="constructor" class="page-cz">
+  <a class="skip-link" href="#cz-panel">Перейти до налаштувань</a>
+  <header class="site-header" id="site-header"></header>
+
+  <main id="main" class="cz">
+    <div class="wrap cz-top">
+      <div class="cz-intro">
+        <h1>Конструктор композицій</h1>
+        <p>Додавайте кульки, міняйте кольори й написи — ціна рахується одразу. Кульки на сцені можна перетягувати.</p>
+      </div>
+      <div class="cz-templates">
+        <p class="label" id="tpl-label">Почати з шаблону</p>
+        <div class="chips chips-scroll" id="cz-templates" role="group" aria-labelledby="tpl-label"></div>
+      </div>
+    </div>
+
+    <div class="wrap cz-grid">
+      <section class="cz-stage-col" aria-label="Сцена композиції">
+        <div class="cz-toolbar" role="toolbar" aria-label="Дії з композицією">
+          <div class="seg" role="radiogroup" aria-label="Формат" id="cz-format"></div>
+          <div class="cz-tools">
+            <button class="icon-btn" type="button" data-act="undo" aria-label="Скасувати дію"></button>
+            <button class="icon-btn" type="button" data-act="redo" aria-label="Повторити дію"></button>
+            <button class="icon-btn" type="button" data-act="shuffle" aria-label="Розкласти кульки заново"></button>
+            <button class="icon-btn" type="button" data-act="clear" aria-label="Прибрати всі кульки"></button>
+          </div>
+        </div>
+        <div class="cz-stage" id="cz-stage" data-bg="studio">
+          <div class="cz-svg" id="cz-svg"></div>
+          <div class="cz-empty" id="cz-empty" hidden>
+            <p class="empty-title">Тут буде ваша композиція</p>
+            <p>Оберіть вид кульки й колір праворуч і натисніть «Додати».</p>
+          </div>
+          <p class="cz-hint hand" id="cz-hint" aria-hidden="true">кульки можна перетягувати</p>
+          <div class="cz-bg" role="radiogroup" aria-label="Фон сцени" id="cz-bg"></div>
+        </div>
+        <div class="cz-summary" id="cz-summary">
+          <div class="cz-sum-info">
+            <span id="cz-count">—</span>
+            <strong id="cz-total">—</strong>
+          </div>
+          <button class="btn btn-ghost btn-sm cz-share" type="button" data-act="share"></button>
+          <button class="btn btn-ink" type="button" data-act="cart"></button>
+        </div>
+      </section>
+
+      <aside class="cz-panel" id="cz-panel" aria-label="Налаштування композиції" tabindex="-1">
+        <div class="cz-tabs" role="tablist" aria-label="Розділи">
+          <button role="tab" id="tab-add" aria-controls="pane-add" aria-selected="true" type="button">Додати</button>
+          <button role="tab" id="tab-item" aria-controls="pane-item" aria-selected="false" tabindex="-1" type="button">Кулька</button>
+          <button role="tab" id="tab-decor" aria-controls="pane-decor" aria-selected="false" tabindex="-1" type="button">Оформлення</button>
+          <button role="tab" id="tab-price" aria-controls="pane-price" aria-selected="false" tabindex="-1" type="button">Ціна</button>
+        </div>
+        <div class="cz-pane" role="tabpanel" id="pane-add" aria-labelledby="tab-add"></div>
+        <div class="cz-pane" role="tabpanel" id="pane-item" aria-labelledby="tab-item" hidden></div>
+        <div class="cz-pane" role="tabpanel" id="pane-decor" aria-labelledby="tab-decor" hidden></div>
+        <div class="cz-pane" role="tabpanel" id="pane-price" aria-labelledby="tab-price" hidden></div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/art.js" defer></script>
+  <script src="assets/js/core.js" defer></script>
+  <script src="assets/js/constructor.js" defer></script>
+</body>
+</html>

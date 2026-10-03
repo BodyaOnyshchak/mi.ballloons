@@ -1,0 +1,662 @@
+/* MI ballloons — конструктор композицій */
+@layer pages {
+  .cz {
+    padding-bottom: clamp(48px, 7vw, 96px);
+  }
+  .cz-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px 40px;
+    align-items: end;
+    padding-block: clamp(16px, 2.4vw, 28px) 18px;
+  }
+  .cz-intro h1 {
+    font-size: var(--step-3);
+  }
+  .cz-intro p {
+    max-width: 52ch;
+    margin-top: 10px;
+    color: var(--ink-2);
+  }
+  .cz-templates .label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  .cz-templates .chip {
+    min-height: 36px;
+    font-size: 0.875rem;
+  }
+
+  .cz-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(360px, 0.8fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* ---------- сцена ---------- */
+  .cz-stage-col {
+    position: sticky;
+    top: 92px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    min-width: 0;
+  }
+  .cz-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 12px;
+  }
+  .cz-tools {
+    display: flex;
+    gap: 2px;
+  }
+  .cz-tools .icon-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+    background: transparent;
+  }
+  .seg {
+    display: inline-flex;
+    padding: 4px;
+    border-radius: var(--r-pill);
+    background: #fff;
+    border: 1px solid var(--line);
+  }
+  .seg button {
+    min-height: 36px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: var(--r-pill);
+    background: transparent;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  .seg button[aria-checked='true'] {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .cz-stage {
+    --stage: radial-gradient(90% 70% at 50% 34%, #fff 0 40%, #fcf0f4 75%, #f6e2e9);
+    position: relative;
+    height: min(calc(100dvh - 250px), 720px);
+    min-height: 440px;
+    border-radius: var(--r-xl);
+    background: var(--stage);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .cz-stage::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 18%;
+    background: linear-gradient(rgb(74 30 50 / 0), rgb(74 30 50 / 0.05));
+    pointer-events: none;
+    z-index: -1;
+  }
+  .cz-stage[data-bg='blush'] {
+    --stage: radial-gradient(90% 70% at 50% 30%, #fff3f6 0 30%, #f9d8e2 80%, #f1c1d0);
+  }
+  .cz-stage[data-bg='night'] {
+    --stage: radial-gradient(90% 70% at 50% 30%, #45333d 0 20%, #2a1f26 70%, #1b1418);
+    color: #fff;
+  }
+  .cz-svg,
+  .cz-svg svg {
+    width: 100%;
+    height: 100%;
+  }
+  .cz-svg .mb-bl {
+    cursor: grab;
+    outline: none;
+    touch-action: none;
+  }
+  .cz-stage.is-dragging,
+  .cz-stage.is-dragging .mb-bl {
+    cursor: grabbing;
+  }
+  .cz-svg .mb-bl:focus-visible {
+    filter: drop-shadow(0 0 4px var(--rose)) drop-shadow(0 0 1px var(--rose));
+  }
+  .cz-svg .mb-sel {
+    stroke: var(--ink);
+    stroke-width: 2;
+    stroke-dasharray: 7 7;
+    opacity: 0.7;
+    animation: march 1.2s linear infinite;
+    pointer-events: none;
+  }
+  .cz-stage[data-bg='night'] .mb-sel {
+    stroke: #fff;
+  }
+  .cz-svg [data-new] {
+    transform-box: fill-box;
+    transform-origin: 50% 85%;
+    animation: inflate 0.5s var(--ease) backwards;
+  }
+  .cz-empty {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    gap: 6px;
+    padding: 24px;
+    text-align: center;
+    color: var(--ink-2);
+    pointer-events: none;
+  }
+  .cz-empty[hidden] {
+    display: none;
+  }
+  .cz-stage[data-bg='night'] .cz-empty {
+    color: #e9d9e0;
+  }
+  .cz-hint {
+    position: absolute;
+    left: 22px;
+    top: 18px;
+    rotate: -4deg;
+    pointer-events: none;
+  }
+  .cz-stage[data-bg='night'] .cz-hint {
+    color: var(--pudra);
+  }
+  .cz-bg {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    border-radius: var(--r-pill);
+    background: rgb(255 255 255 / 0.85);
+    box-shadow: var(--shadow-1);
+  }
+  .cz-bg button {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 0;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.1);
+  }
+  .cz-bg [data-bg='studio'] {
+    background: radial-gradient(circle at 40% 35%, #fff, #f6e2e9);
+  }
+  .cz-bg [data-bg='blush'] {
+    background: radial-gradient(circle at 40% 35%, #fff3f6, #eeb7c8);
+  }
+  .cz-bg [data-bg='night'] {
+    background: radial-gradient(circle at 40% 35%, #5a4450, #1b1418);
+  }
+  .cz-bg [aria-checked='true'] {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--ink);
+  }
+
+  .cz-summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 10px 10px 22px;
+    border-radius: var(--r-pill);
+    background: #fff;
+    box-shadow: var(--shadow-1);
+  }
+  .cz-sum-info {
+    display: grid;
+    margin-inline-end: auto;
+    line-height: 1.25;
+  }
+  .cz-sum-info span {
+    color: var(--ink-3);
+    font-size: 0.8125rem;
+  }
+  .cz-sum-info strong {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- панель ---------- */
+  .cz-panel {
+    border-radius: var(--r-xl);
+    background: #fff;
+    box-shadow: var(--shadow-1);
+    overflow: clip;
+  }
+  .cz-panel:focus {
+    outline: none;
+  }
+  .cz-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-bottom: 1px solid var(--line);
+  }
+  .cz-tabs [role='tab'] {
+    min-height: 54px;
+    padding: 0 6px;
+    border: 0;
+    border-bottom: 2.5px solid transparent;
+    background: transparent;
+    color: var(--ink-3);
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  .cz-tabs [role='tab']:hover {
+    color: var(--ink);
+  }
+  .cz-tabs [role='tab'][aria-selected='true'] {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+  .cz-pane {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 22px;
+  }
+  .cz-pane[hidden] {
+    display: none;
+  }
+  .pane-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+  .pane-block {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .pane-note {
+    margin-top: -4px;
+  }
+  .pane-empty {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+    padding: 36px 12px;
+    text-align: center;
+    color: var(--ink-2);
+  }
+  .pane-empty-ico {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--pudra-2);
+    color: var(--rose);
+  }
+
+  /* Плитки видів кульок */
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .tile {
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+    padding: 8px 4px 10px;
+    border-radius: var(--r-md);
+    border: 1.5px solid var(--line);
+    background: #fff;
+    text-align: center;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+  .tile:hover {
+    border-color: var(--pudra-3);
+  }
+  .tile[aria-pressed='true'] {
+    border-color: var(--ink);
+    background: var(--zefir);
+  }
+  .tile-art {
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 64px;
+  }
+  .tile-art svg {
+    width: 100%;
+    height: 100%;
+  }
+  .tile-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .tile-meta {
+    color: var(--ink-3);
+    font-size: 0.6875rem;
+    line-height: 1.25;
+  }
+
+  /* Кольори */
+  .sw-current {
+    font-size: 0.875rem;
+    color: var(--ink-2);
+  }
+  .sw-group {
+    display: grid;
+    gap: 8px;
+  }
+  .sw-title {
+    color: var(--ink-3);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .sws {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sw {
+    --hi: color-mix(in oklab, var(--c), #fff 62%);
+    --lo: color-mix(in oklab, var(--c), #2b0f1d 26%);
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 36% 30%, #fff 0 7%, var(--hi) 20%, var(--c) 55%, var(--lo));
+    box-shadow: inset 0 0 0 1px rgb(43 15 29 / 0.08);
+    transition: transform 0.15s var(--ease);
+  }
+  .sw:hover {
+    transform: scale(1.08);
+  }
+  .sw[data-finish='chrome'],
+  .sw[data-finish='foil'] {
+    background: linear-gradient(140deg, var(--hi) 0%, var(--c) 30%, color-mix(in oklab, var(--c), #2b0f1d 40%) 52%, var(--hi) 72%, var(--c) 100%);
+  }
+  .sw[data-finish='pearl'] {
+    background: radial-gradient(circle at 36% 30%, #fff 0 10%, var(--hi) 35%, var(--c) 70%, var(--lo));
+  }
+  .sw[data-finish='clear'] {
+    background: radial-gradient(circle at 36% 30%, #fff 0 12%, #f4f7fa 50%, #cbd6e2);
+  }
+  .sw[data-finish='confetti'] {
+    background: radial-gradient(circle, var(--c) 0 2.2px, transparent 2.8px) 0 0 / 9px 9px, radial-gradient(circle, var(--c) 0 1.6px, transparent 2.2px) 4px 5px / 9px 9px,
+      radial-gradient(circle at 36% 30%, #fff 0 12%, #f4f7fa 50%, #cbd6e2);
+  }
+  .sw[aria-checked='true'] {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--ink);
+  }
+
+  .add-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    margin: 0 -22px -22px;
+    padding: 14px 22px;
+    background: rgb(255 255 255 / 0.94);
+    border-top: 1px solid var(--line);
+  }
+  .add-btn {
+    flex: 1 1 200px;
+  }
+  .add-sum {
+    margin-inline-start: auto;
+    padding-inline-start: 12px;
+    border-inline-start: 1px solid rgb(255 255 255 / 0.25);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Вибрана кулька */
+  .item-head {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 14px;
+    align-items: center;
+  }
+  .item-art {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--zefir);
+  }
+  .item-art svg {
+    width: 100%;
+    height: 100%;
+  }
+  .chip-font {
+    font-weight: 400;
+  }
+  .chip-font-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.25rem;
+  }
+  .chip-font-hand {
+    font-family: 'Bad Script', cursive;
+  }
+  .chip-font-classic {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.0625rem;
+  }
+  .chip-font-modern {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+  .item-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .btn-danger:hover:not(:disabled) {
+    background: var(--err);
+    border-color: var(--err);
+  }
+  .cz-pane .input-hand {
+    min-height: 0;
+    font-size: 1.625rem;
+  }
+
+  /* Перемикач */
+  .switch {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .switch input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+  .switch-ui {
+    position: relative;
+    flex: none;
+    width: 44px;
+    height: 26px;
+    border-radius: 13px;
+    background: var(--line-2);
+    transition: background-color 0.2s;
+  }
+  .switch-ui::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+    transition: translate 0.2s var(--ease);
+  }
+  .switch input:checked + .switch-ui {
+    background: var(--ink);
+  }
+  .switch input:checked + .switch-ui::after {
+    translate: 18px 0;
+  }
+  .switch input:focus-visible + .switch-ui {
+    outline: 2.5px solid var(--rose);
+    outline-offset: 3px;
+  }
+  .switch .hint {
+    display: block;
+    font-weight: 400;
+  }
+
+  /* Ціна */
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9063rem;
+  }
+  .price-table th {
+    text-align: start;
+    font-weight: 400;
+    padding: 9px 8px 9px 0;
+  }
+  .price-table td {
+    padding: 9px 0 9px 8px;
+    text-align: end;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .price-table td:nth-child(2) {
+    color: var(--ink-3);
+    font-size: 0.8125rem;
+  }
+  .price-table tbody tr {
+    border-bottom: 1px dashed var(--line-2);
+  }
+  .price-table tfoot th,
+  .price-table tfoot td {
+    padding-top: 14px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.125rem;
+  }
+  .price-actions {
+    display: grid;
+    gap: 10px;
+  }
+}
+
+@keyframes march {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+@media (max-width: 1100px) {
+  .tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 960px) {
+  .page-cz .bar {
+    position: relative;
+  }
+  .cz-top {
+    grid-template-columns: minmax(0, 1fr);
+    padding-bottom: 12px;
+  }
+  .cz-grid {
+    grid-template-columns: minmax(0, 1fr);
+    padding-inline: 0;
+    gap: 0;
+  }
+  .cz-stage-col {
+    top: 0;
+    z-index: 10;
+    gap: 0;
+    padding: 8px var(--gutter);
+    background: var(--zefir);
+    box-shadow: 0 10px 20px -18px rgb(74 30 50 / 0.5);
+  }
+  .cz-toolbar {
+    padding-bottom: 8px;
+  }
+  .cz-stage {
+    height: 46svh;
+    min-height: 300px;
+    border-radius: var(--r-lg);
+  }
+  .cz-summary {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    border-radius: 20px 20px 0 0;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom)) 18px;
+    box-shadow: 0 -10px 30px -16px rgb(74 30 50 / 0.4);
+  }
+  .cz-panel {
+    margin: 16px var(--gutter) 0;
+  }
+  .cz {
+    padding-bottom: 120px;
+  }
+  .page-cz .site-footer {
+    padding-bottom: 110px;
+  }
+  .add-row {
+    position: static;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+  .cz-hint {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .cz-toolbar .icon-btn {
+    width: 38px;
+    height: 38px;
+  }
+  .seg button {
+    padding: 0 12px;
+  }
+  .tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .tile {
+    padding: 6px 2px 8px;
+  }
+  .tile-name {
+    font-size: 0.6875rem;
+  }
+  .tile-meta {
+    font-size: 0.625rem;
+  }
+  .cz-share span {
+    display: none;
+  }
+  .cz-share {
+    padding: 0 12px;
+  }
+  .cz-pane {
+    padding: 18px 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cz-svg .mb-sel,
+  .cz-svg [data-new] {
+    animation: none;
+  }
+}
